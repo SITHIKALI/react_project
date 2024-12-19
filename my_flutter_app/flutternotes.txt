@@ -1,0 +1,21 @@
+# Update the package list
+sudo apt-get update
+
+# Install dependencies
+sudo apt-get install -y curl git unzip xz-utils libglu1-mesa
+
+# Download the latest Flutter SDK
+curl -O https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.7.0-stable.tar.xz
+
+# Extract the Flutter SDK
+tar xf flutter_linux_3.7.0-stable.tar.xz
+
+# Move Flutter to a directory in your PATH
+sudo mv flutter /usr/local/flutter
+
+# Add Flutter to PATH
+echo 'export PATH="$PATH:/usr/local/flutter/bin"' >> ~/.bashrc
+source ~/.bashrc
+
+# Verify Flutter installation
+flutter doctor
