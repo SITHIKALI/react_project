@@ -60,6 +60,6 @@ Start the backend server:
 cd react_project/phishing-detection-app/backend
 npm start
 
-tart the frontend application:
+start the frontend application:
 cd react_project/phishing-detection-app/frontend
 npm start
