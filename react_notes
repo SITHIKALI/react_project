@@ -1,0 +1,65 @@
+To complete your AI-powered phishing detection system, you need to ensure that all the necessary components are implemented and integrated correctly. Here is a step-by-step guide to help you complete your project:
+
+Frontend (React)
+Create a new React app:
+
+If not already done, create a new React app using create-react-app:
+npx create-react-app phishing-detection-app-frontend
+
+Design the UI:
+
+Ensure you have a user-friendly interface for URL input and result display. You already have UrlForm and App components in UrlForm.js and App.js.
+
+Make API calls:
+
+Use Axios to make requests to your Node.js backend. This is already implemented in UrlForm.js.
+
+Backend (Node.js)
+Set up a new Node.js project:
+
+If not already done, create a new Node.js project using npm init:
+npm init -y
+
+Install dependencies:
+Install required packages:
+npm install express mongoose @tensorflow/tfjs body-parser
+npm install --save-dev nodemon
+
+Create API endpoints:
+Define API endpoints for handling URL submissions and returning results. This is already implemented in index.js and index.js.
+
+Integrate with MongoDB:
+
+Use Mongoose to interact with your MongoDB database. This is already implemented in Url.js and app.js.
+
+Database (MongoDB)
+Set up a new MongoDB database:
+
+Create a new MongoDB database using MongoDB Atlas or MongoDB Compass.
+Define the schema:
+
+Define the schema for storing URL data and AI model results. This is already implemented in Url.js.
+Interact with the database:
+
+Use Mongoose to perform CRUD operations. This is already implemented in index.js.
+AI Model Integration
+Choose an AI model:
+
+Select a suitable AI model for phishing detection. You can use TensorFlow.js.
+Integrate the AI model:
+
+Use TensorFlow.js to integrate the AI model with your Node.js backend. This is partially implemented in aiModel.js.
+Ensure you update the modelPath and implement the preprocessUrl function.
+
+Process URL data:
+
+Use the AI model to process URL data and predict phishing likelihood. This is already implemented in aiModel.js.
+
+Running the Application
+Start the backend server:
+cd react_project/phishing-detection-app/backend
+npm start
+
+tart the frontend application:
+cd react_project/phishing-detection-app/frontend
+npm start
