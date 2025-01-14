@@ -4,46 +4,33 @@ import axios from 'axios';
 const UrlForm = () => {
     const [url, setUrl] = useState('');
     const [result, setResult] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
+    const [error, setError] = useState(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setLoading(true);
-        setError('');
-        
         try {
-            const response = await axios.post('/api/urls', { url });
-            setResult(response.data);
-        } catch (err) {
+            const response = await axios.post('http://localhost:5001/check-url', { url });
+            setResult(response.data.result);
+            setError(null);
+        } catch (error) {
             setError('Error processing the URL. Please try again.');
-        } finally {
-            setLoading(false);
+            setResult(null);
         }
     };
 
     return (
         <div>
-            <h2>Phishing Detection</h2>
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
                     value={url}
                     onChange={(e) => setUrl(e.target.value)}
                     placeholder="Enter URL"
-                    required
                 />
-                <button type="submit" disabled={loading}>
-                    {loading ? 'Processing...' : 'Submit'}
-                </button>
+                <button type="submit">Check URL</button>
             </form>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-            {result && (
-                <div>
-                    <h3>Result:</h3>
-                    <p>{result.isPhishing ? 'This URL is likely a phishing site.' : 'This URL is safe.'}</p>
-                </div>
-            )}
+            {result && <div>{result}</div>}
+            {error && <div style={{ color: 'red' }}>{error}</div>}
         </div>
     );
 };
