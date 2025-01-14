@@ -1,4 +1,9 @@
-
+python -m venv venv
 source venv/Scripts/activate
 
  deactivate
+
+ npm cache clean --force
+ rm -rf node_modules package-lock.json
+
+ npm install

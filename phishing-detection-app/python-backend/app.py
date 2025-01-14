@@ -2,20 +2,24 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-def is_phishing_url(url):
-    # Simple heuristic-based approach to detect phishing URLs
-    phishing_keywords = ['login', 'verify', 'update', 'secure', 'account']
-    return any(keyword in url for keyword in phishing_keywords)
+def generate_reply(message):
+    # Simple logic for generating a reply
+    if "hello" in message.lower():
+        return "Hello! How can I assist you today?"
+    elif "help" in message.lower():
+        return "I'm here to help. Please tell me more about what's on your mind."
+    else:
+        return "I'm not sure how to respond to that. Can you please elaborate?"
 
-@app.route('/check-url', methods=['POST'])
-def check_url():
+@app.route('/chat', methods=['POST'])
+def chat():
     data = request.get_json()
-    url = data.get('url')
-    if not url:
-        return jsonify({'error': 'URL is required'}), 400
+    message = data.get('message')
+    if not message:
+        return jsonify({'error': 'Message is required'}), 400
 
-    result = 'Phishing detected' if is_phishing_url(url) else 'Safe URL'
-    return jsonify({'result': result})
+    reply = generate_reply(message)
+    return jsonify({'reply': reply})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5001)
